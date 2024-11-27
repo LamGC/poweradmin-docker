@@ -1,6 +1,6 @@
 FROM php:8.1-apache
 
-RUN apt install -y php-intl php-gettext php-openssl php-filter php-tokenizer php-pdo \
+RUN apt update && apt install -y php-intl php-gettext php-openssl php-filter php-tokenizer php-pdo \
                 php-mysqlnd php-pgsql php-sqlite3
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
