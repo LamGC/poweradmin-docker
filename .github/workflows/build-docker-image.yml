@@ -11,7 +11,7 @@ on:
 
 env:
   # github.repository as <account>/<repo>
-  IMAGE_NAME: docker.io/LamGC/poweradmin-docker
+  IMAGE_NAME: docker.io/lamgc/poweradmin-docker
 
 jobs:
   build:
