@@ -36,7 +36,7 @@ jobs:
         uses: docker/setup-buildx-action@v3 # v3.0.0
 
       - name: Download latest PowerAdmin
-        run: ./download-latest-poweradmin.sh
+        run: chmod +x ./download-latest-poweradmin.sh && ./download-latest-poweradmin.sh
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
