@@ -1,0 +1,33 @@
+name: Check upstream updates
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  # 检查 jenkinsci/docker-inbound-agent 仓库的最新版本，并使用 actions/github-script 向 LATEST_VERSION 文件写入最新版本号。
+  check-updates:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.CHECK_UPDATES_TOKEN }}
+      - name: Check updates
+        run: chmod +x ./update-latest-version.sh && ./update-latest-version.sh
+      - name: Get latest version
+        id: latest-version
+        run: echo "::set-output name=version::$(cat LATEST_VERSION)"
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update LATEST_VERSION to ${{ steps.latest-version.outputs.version }}
+          commit_options: '--no-verify'
+          push_options: '--force'
+          file_pattern: LATEST_VERSION
