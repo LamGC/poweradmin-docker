@@ -4,7 +4,7 @@ name: Build Docker Image
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "updates" ]
+    branches: [ "main" ]
     paths:
       - 'LATEST_VERSION'
   workflow_dispatch:
