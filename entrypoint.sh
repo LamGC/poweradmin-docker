@@ -21,4 +21,4 @@ if [ ! -d "$POWERADMIN_BASE_DIR/install" ]; then
 fi
 
 # 到这里，执行 php-apache 原有的 entrypoint.sh
-exec /usr/local/bin/docker-php-entrypoint "$@"
+/usr/local/bin/docker-php-entrypoint "$@"
