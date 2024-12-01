@@ -4,6 +4,11 @@ English | [中文](./README.zh.md)
 
 # Warning, this is an unofficial image!!!
 Official repository: [poweradmin/poweradmin](https://github.com/poweradmin/poweradmin)
+Repository URL for this image: [LamGC/poweradmin-docker](https://github.com/LamGC/poweradmin-docker)
+
+For issues related to PowerAdmin, you should create issue at [poweradmin/poweradmin](https://github.com/poweradmin/poweradmin).   
+
+If it's a Docker deployment issue, you can create issue at [LamGC/poweradmin-docker](https://github.com/LamGC/poweradmin-docker).  
 
 ## Usage
 

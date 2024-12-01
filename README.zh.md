@@ -4,6 +4,10 @@
 
 # 警告！！！这不是官方镜像！！！
 官方仓库在这里: [poweradmin/poweradmin](https://github.com/poweradmin/poweradmin)
+这个镜像的仓库在这: [LamGC/poweradmin-docker](https://github.com/LamGC/poweradmin-docker)
+
+对于 PowerAdmin 的问题，你应该前往 [poweradmin/poweradmin](https://github.com/poweradmin/poweradmin) 进行反馈，如果是 Docker 部署的问题，
+可以在 [LamGC/poweradmin-docker](https://github.com/LamGC/poweradmin-docker) 反馈。
 
 ## 使用方法
 
