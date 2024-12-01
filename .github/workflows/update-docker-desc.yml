@@ -21,3 +21,4 @@ jobs:
             username: ${{ secrets.DOCKER_USER }}
             password: ${{ secrets.DOCKER_TOKEN }}
             repository: lamgc/poweradmin
+            enable-url-completion: true
