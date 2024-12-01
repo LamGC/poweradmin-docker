@@ -7,7 +7,7 @@ function remove_install_dir() {
 }
 
 echo 'Checking install directory...'
-if [ ! -d "$POWERADMIN_BASE_DIR/install" ]; then
+if [ -d "$POWERADMIN_BASE_DIR/install" ]; then
     if [ "$POWERADMIN_SKIP_INSTALL" == "true" ] || [ -f "/etc/poweradmin/skip_install" ]; then
         remove_install_dir
     else
