@@ -30,7 +30,7 @@ jobs:
       # 从仓库目录下读取 LATEST_VERSION 文件，获取最新版本号
       - name: Read latest version
         id: read-version
-        run: echo ::set-output name=version::$(cat LATEST_VERSION)
+        run: echo "version=$(cat LATEST_VERSION)" >> $GITHUB_OUTPUT
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
