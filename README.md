@@ -66,7 +66,7 @@ The image will check for the latest version of PowerAdmin daily and automaticall
 
 ## License
 
-This project [lamgc/poweradmin](https://github.com/lamgc/poweradmin) is open-sourced under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+This project [lamgc/poweradmin](https://github.com/LamGC/poweradmin-docker) is open-sourced under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 ```plaintext
 Copyright 2024 lamgc

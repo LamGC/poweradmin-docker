@@ -56,7 +56,7 @@ $ docker run -d --name pdns_admin --restart unless-stopped -v /path/to/pdns_admi
 
 # 许可
 
-本项目 [lamgc/poweradmin](https://github.com/lamgc/poweradmin) 依据 [Apache 许可证 2.0](https://www.apache.org/licenses/LICENSE-2.0) 开源。
+本镜像 [lamgc/poweradmin](https://github.com/LamGC/poweradmin-docker) 依据 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) 开源。
 
 ```plaintext
 版权所有 2024 lamgc
