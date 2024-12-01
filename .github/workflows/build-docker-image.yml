@@ -63,5 +63,5 @@ jobs:
           platforms: ${{ matrix.platform }}
           push: true
           tags: ${{ env.IMAGE_NAME }}:latest,${{ env.IMAGE_NAME }}:${{ steps.read-version.outputs.version }}
-          cache-from: type=gha
+          cache-from: type=gha, key=${{ env.IMAGE_NAME }}-build-${{ matrix.platform }}
           cache-to: type=gha,mode=max
