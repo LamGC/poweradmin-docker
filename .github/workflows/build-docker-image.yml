@@ -16,6 +16,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [linux/amd64, linux/arm64, linux/ppc64le, linux/s390x, linux/386, linux/arm/v7, linux/arm/v5, linux/mips64le]
     permissions:
       contents: read
       packages: write
@@ -57,7 +60,7 @@ jobs:
         uses: docker/build-push-action@v5 # v5.0.0
         with:
           context: .
-          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v5,linux/mips64le
+          platforms: ${{ matrix.platform }}
           push: true
           tags: ${{ env.IMAGE_NAME }}:latest,${{ env.IMAGE_NAME }}:${{ steps.read-version.outputs.version }}
           cache-from: type=gha
