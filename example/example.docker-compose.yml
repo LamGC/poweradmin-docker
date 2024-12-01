@@ -1,0 +1,61 @@
+services:
+  pdns-auth:
+    container_name: pdns_auth
+    image: "powerdns/pdns-auth-49:latest"
+    ports:
+      - "53:5300"
+      - "53:5300/udp"
+    volumes:
+        # 这个配置很重要，通过这个配置文件配置数据库连接信息。
+        # Important!!! configure database connection information through this configuration file.
+      - "./pdns_auth_config/config.conf:/etc/powerdns/pdns.conf"
+
+        # 看下面数据库的说明
+        # Please refer to the explanation of the database below.
+      - "./mysql_shared/:/var/run/mysqld/"
+    restart: unless-stopped
+    depends_on:
+      - db
+  pdns-admin:
+    image: lamgc/poweradmin:latest
+    container_name: pdns_admin
+    ports:
+      - "9191:80"
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    restart: unless-stopped
+    volumes:
+      # 如果你在执行 PowerAdmin 安装步骤时，出现无法写入 config.inc.php 文件的情况，那么你需要根据下面这一行映射，将配置内容写入到对应文件后，取消注释这一行映射配置。
+      # If you encounter a situation where installer are unable to write the "config.inc.php" file during the PowerAdmin installation steps, 
+      # you need to map the configuration content to the corresponding file according to the following line, 
+      # and then uncomment this line of mapping configuration.
+
+      # - "./pdns_admin_config/config.inc.php:/var/www/html/inc/config.inc.php"
+    environment:
+      # 当你完成了 PowerAdmin 的安装步骤，安装程序要求你删除 install 目录时，你可以取消下面这行环境变量的注释，
+      # 这将会指示容器删除 install 目录，避免安装程序再次运行。
+      # When you have completed the installation steps of PowerAdmin and the installation program requires 
+      # you to delete the install directory, you can uncomment the environment variable below, 
+      # which will instruct the container to delete the install directory and avoid the installation program running again.
+
+      # POWERADMIN_SKIP_INSTALL: true
+    depends_on:
+      - db
+      - pdns-auth
+  db:
+    image: mysql:lts
+    container_name: pdns_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: pdns
+      MYSQL_USER: pdns
+      MYSQL_PASSWORD: pdns
+    volumes:
+        # 你应该对 mysql_data 目录安排定时备份，以确保你的 DNS 数据不会丢失。
+        # You should schedule regular backups of the mysql_data directory to ensure that your DNS data is not lost.
+      - "./mysql_data:/var/lib/mysql"
+        # 由于 PowerDNS 无法通过 TCP 连接 MySQL，因此我将 Unix Socket 映射到 PowerDNS 供 PowerDNS 连接数据库。
+        # Because PowerDNS cannot connect to MySQL via TCP, I mapped Unix Socket to PowerDNS for PowerDNS to connect to the database.
+      - "./mysql_shared:/var/run/mysqld/"
